@@ -1,0 +1,22 @@
+{
+  "name": "test-runner-web",
+  "author": "Lloyd Brookes <75pound@gmail.com>",
+  "version": "0.0.0",
+  "description": "test-runner-web",
+  "repository": "https://github.com/75lb/test-runner-web",
+  "keywords": [],
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "test-runner test/*.js"
+  },
+  "dependencies": {
+    "test-runner": "file:../test-runner"
+  },
+  "devDependencies": {
+    "local-web-server": "^2.6.0",
+    "rollup": "^0.67.3"
+  }
+}
