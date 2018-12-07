@@ -3,17 +3,18 @@
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "version": "0.0.0",
   "description": "test-runner-web",
-  "repository": "https://github.com/75lb/test-runner-web",
+  "repository": "https://github.com/test-runner-js/web",
   "keywords": [],
   "license": "MIT",
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "scripts": {
-    "test": "test-runner test/*.js"
+    "test": "ws",
+    "dist:test": "rollup -c dist/test.index.config.js"
   },
   "dependencies": {
-    "test-runner": "file:../test-runner"
+    "test-runner": "file:../core"
   },
   "devDependencies": {
     "local-web-server": "^2.6.0",
