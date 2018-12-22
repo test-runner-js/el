@@ -1,34 +1,38 @@
+import './web-view.js'
 import testRunnerSuite from './test-runner.mjs'
 import TestRunner from '../../index.mjs'
+import mix from '../../node_modules/create-mixin/index.mjs'
+import ViewBase from '../../node_modules/test-runner/lib/view-base.mjs'
 const π = document.createElement.bind(document)
 const $ = document.querySelector.bind(document)
 
-class WebView extends HTMLElement {
-  connectedCallback () {
-  }
+const webView = π('web-view')
+
+const runnerView = ViewBase => class RunnerView extends ViewBase {
   start (count) {
     const li = π('li')
     li.textContent = `1..${count}`
-    this.appendChild(li)
+    webView.appendChild(li)
   }
-  testPass (test) {
+  testPass (test, result) {
     const li = π('li')
     li.textContent = `ok ${test.index} ${test.name}`
-    this.appendChild(li)
+    webView.appendChild(li)
   }
-  testFail (test) {
+  testFail (test, err) {
     const li = π('li')
     li.textContent = `not ok ${test.index} ${test.name}`
-    this.appendChild(li)
+    webView.appendChild(li)
+    console.log(err)
+  }
+  end () {
+    console.log('end')
   }
 }
 
-customElements.define('web-view', WebView)
+$('body').appendChild(webView)
 
-const view = new WebView()
-$('body').appendChild(view)
-
-testRunnerSuite(console.assert, TestRunner, view)
+testRunnerSuite(console.assert, TestRunner, runnerView)
   .catch(function (err) {
     console.error(err)
   })
