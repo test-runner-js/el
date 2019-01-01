@@ -14,11 +14,10 @@
     "dist:test": "rollup -c dist/test.index.config.js"
   },
   "dependencies": {
-    "test-runner": "file:../core"
+    "test-object-model": "^0.2.4",
+    "test-runner": "^0.6.0-4"
   },
   "devDependencies": {
-    "create-mixin": "^1.1.0",
-    "local-web-server": "^2.6.0",
-    "rollup": "^0.67.3"
+    "rollup": "^1.0.0"
   }
 }

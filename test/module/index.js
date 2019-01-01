@@ -1,14 +1,12 @@
-import './web-view.js'
-import testRunnerSuite from './test-runner.mjs'
+// import './web-view.js'
+import Tom from '../../node_modules/test-object-model/index.mjs'
 import TestRunner from '../../index.mjs'
-import mix from '../../node_modules/create-mixin/index.mjs'
-import ViewBase from '../../node_modules/test-runner/lib/view-base.mjs'
 const π = document.createElement.bind(document)
 const $ = document.querySelector.bind(document)
 
 const webView = π('web-view')
 
-const runnerView = ViewBase => class RunnerView extends ViewBase {
+const view = ViewBase => class RunnerView extends ViewBase {
   start (count) {
     const li = π('li')
     li.textContent = `1..${count}`
@@ -23,16 +21,27 @@ const runnerView = ViewBase => class RunnerView extends ViewBase {
     const li = π('li')
     li.textContent = `not ok ${test.index} ${test.name}`
     webView.appendChild(li)
-    console.log(err)
   }
   end () {
-    console.log('end')
+    const li = π('li')
+    li.textContent = `end`
+    webView.appendChild(li)
   }
 }
 
 $('body').appendChild(webView)
 
-testRunnerSuite(console.assert, TestRunner, runnerView)
-  .catch(function (err) {
-    console.error(err)
+const tom = new Tom()
+tom.test('pass', function () {
+  console.assert(this.name === 'pass')
+  return true
+})
+tom.test('fail', function () {
+  throw new Error('broken')
+})
+
+const runner = new TestRunner({ tom, view })
+runner.start()
+  .then(results => {
+    console.assert(results[0] === true)
   })
