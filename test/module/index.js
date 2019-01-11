@@ -1,47 +1,26 @@
-// import './web-view.js'
+import './test-runner-el.js'
 import Tom from '../../node_modules/test-object-model/index.mjs'
+import sleep from '../../node_modules/sleep-anywhere/index.mjs'
 import TestRunner from '../../index.mjs'
 const π = document.createElement.bind(document)
 const $ = document.querySelector.bind(document)
 
-const webView = π('web-view')
-
-const view = ViewBase => class RunnerView extends ViewBase {
-  start (count) {
-    const li = π('li')
-    li.textContent = `1..${count}`
-    webView.appendChild(li)
-  }
-  testPass (test, result) {
-    const li = π('li')
-    li.textContent = `ok ${test.index} ${test.name}`
-    webView.appendChild(li)
-  }
-  testFail (test, err) {
-    const li = π('li')
-    li.textContent = `not ok ${test.index} ${test.name}`
-    webView.appendChild(li)
-  }
-  end () {
-    const li = π('li')
-    li.textContent = `end`
-    webView.appendChild(li)
-  }
-}
-
-$('body').appendChild(webView)
-
 const tom = new Tom()
-tom.test('pass', function () {
-  console.assert(this.name === 'pass')
+tom.test('fetch something 1', async function () {
+  await sleep(2000)
   return true
 })
-tom.test('fail', function () {
+tom.test('fetch something 2', async function () {
+  await sleep(100)
+  return true
+})
+tom.test('this fails', async function () {
+  await sleep(3000)
   throw new Error('broken')
 })
 
-const runner = new TestRunner({ tom, view })
+const runner = new TestRunner({ tom })
+const testRunnerEl = π('test-runner')
+$('body').appendChild(testRunnerEl)
+testRunnerEl.setRunner(runner)
 runner.start()
-  .then(results => {
-    console.assert(results[0] === true)
-  })

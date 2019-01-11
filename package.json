@@ -18,6 +18,8 @@
     "test-runner": "^0.6.0-4"
   },
   "devDependencies": {
-    "rollup": "^1.0.0"
+    "dommo": "^0.1.2",
+    "rollup": "^1.0.0",
+    "sleep-anywhere": "^1.0.0"
   }
 }
