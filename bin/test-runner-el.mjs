@@ -18,10 +18,10 @@ class TestRunnerEl extends HTMLElement {
       this.runnerStart(runner)
     })
     runner.on('state', state => {
-      if (state !== 'end') {
+      // if (state !== 'end') {
         this.dom.runner.children[1].textContent = state
         this.dom.runner.setAttribute('state', state)
-      }
+      // }
     })
   }
 
@@ -33,7 +33,9 @@ class TestRunnerEl extends HTMLElement {
   loadTom (tom) {
     for (const test of tom) {
       const tomEl = dommo(`<tom><span>${test.name}</span> <span></span></tom>`)
-      test.on('state', state => {
+      tomEl.style.marginLeft = `${test.level()}em`
+      test.on('state', (state, test) => {
+        console.log(test)
         tomEl.children[1].textContent = state
         tomEl.setAttribute('state', state)
       })
