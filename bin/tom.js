@@ -1,11 +1,9 @@
-import Tom from '../node_modules/test-object-model/index.mjs'
-import sleep from '../node_modules/sleep-anywhere/index.mjs'
-const a = chai.assert
+const Tom = require('test-object-model')
+const sleep = require('sleep-anywhere')
 
 const tom = new Tom()
 tom.test('fetch something 1', async function () {
   await sleep(2000)
-  a.strictEqual(1, 2)
   return true
 })
 tom.test('fetch something 2', async function () {
@@ -21,4 +19,4 @@ tom.test('this fails', async function () {
   throw new Error('broken')
 })
 
-export default tom
+module.exports = tom
