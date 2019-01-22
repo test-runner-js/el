@@ -1,8 +1,8 @@
 {
-  "name": "test-runner-web",
+  "name": "test-runner-el",
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "version": "0.0.0",
-  "description": "test-runner-web",
+  "description": "test-runner-el",
   "repository": "https://github.com/test-runner-js/web",
   "keywords": [],
   "license": "MIT",
@@ -13,15 +13,11 @@
     "test": "ws",
     "dist:test": "rollup -c dist/test.index.config.js"
   },
-  "dependencies": {
-    "puppeteer": "^1.11.0",
-    "test-object-model": "^0.2.4",
-    "test-runner": "^0.6.0-4"
-  },
+  "dependencies": {},
   "devDependencies": {
     "dommo": "^0.1.2",
-    "local-web-server": "^2.6.1",
-    "rollup": "^1.0.0",
-    "sleep-anywhere": "^1.0.0"
+    "sleep-anywhere": "^1.0.0",
+    "test-runner-core": "^0.6.0-5",
+    "test-object-model": "^0.2.5"
   }
 }

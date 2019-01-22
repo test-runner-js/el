@@ -1,5 +1,5 @@
-const Tom = require('test-object-model')
-const sleep = require('sleep-anywhere')
+import Tom from '../node_modules/test-object-model/index.mjs'
+import sleep from '../node_modules/sleep-anywhere/index.mjs'
 
 const tom = new Tom()
 tom.test('fetch something 1', async function () {
@@ -19,4 +19,4 @@ tom.test('this fails', async function () {
   throw new Error('broken')
 })
 
-module.exports = tom
+export default tom
