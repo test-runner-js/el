@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Styleguide</title>
+    <link rel="stylesheet" href="test/index.css">
+    <link rel="stylesheet" href="test-runner.css">
+  </head>
+  <body>
+    <test-runner>
+      <header>
+        <runner-name>test-runner</runner-name>
+        <state-indicator state="in-progress"></state-indicator>
+        <runner-state>in-progress</runner-state>
+        <span>duration: </span>
+      </header>
+      <tom-container>
+        <test-el>
+          <state-indicator></state-indicator>
+          <test-name>Main tests</test-name>
+        </test-el>
+        <test-el style="transform: translateX(1em)">
+          <state-indicator state="pass"></state-indicator>
+          <test-name>Should do that thing we expect</test-name>
+        </test-el>
+        <test-el style="transform: translateX(1em)">
+          <state-indicator state="fail"></state-indicator>
+          <test-name>Should fail as expected</test-name>
+        </test-el>
+        <test-el style="transform: translateX(1em)">
+          <state-indicator state="in-progress"></state-indicator>
+          <test-name>Another thing in-progress</test-name>
+        </test-el>
+      </tom-container>
+    </test-runner>
+  </body>
+</html>

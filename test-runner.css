@@ -1,0 +1,49 @@
+header {
+  border-bottom: 3px dotted silver;
+  margin-bottom: 0.5em;
+  display: flex;
+  flex-direction: row;
+  height: 1em;
+}
+header > :nth-child(1) { flex: 0 0 7em; }
+header > :nth-child(3) { flex: 1 1 auto; }
+header > :nth-child(4) { flex: 1 1 auto; }
+
+runner-name {
+  font-weight: bold;
+}
+
+tom-container {
+  display: block;
+}
+
+test-el {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5em;
+  height: 1em;
+}
+/* test-el > :nth-child(1) { flex: 0 0 1em; } */
+test-el > :nth-child(2) { flex: 1 1 auto; }
+
+test-name {
+}
+
+state-indicator {
+  flex: 0 0 1em;
+  display: block;
+  height: 100%;
+  margin-right: 0.5em;
+}
+
+[state="in-progress"],
+[state="start"]
+{
+  background-color: lightblue;
+}
+[state="pass"] {
+  background-color: lightgreen;
+}
+[state="fail"] {
+  background-color: lightsalmon;
+}

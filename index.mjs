@@ -4,40 +4,42 @@ const π = document.createElement.bind(document)
 class TestRunnerEl extends HTMLElement {
   connectedCallback () {
     this.innerHTML = `<header>
-      <runner><name></name> <state></state></runner>
+      <runner-name>test-runner</runner-name>
+      <state-indicator state="in-progress"></state-indicator>
+      <runner-state>in-progress</runner-state>
+      <span>duration: </span>
     </header>
     <tom-container></tom-container>`
     this.dom = {
       tomContainer: this.querySelector('tom-container'),
-      runner: this.querySelector('runner')
+      runnerStateName: this.querySelector('runner-state'),
+      runnerStateIndicator: this.querySelector('state-indicator')
     }
   }
   setRunner (runner) {
-    this.dom.runner.children[0].textContent = runner.name || 'test runner'
     runner.on('start', count => {
       this.runnerStart(runner)
     })
     runner.on('state', state => {
-      // if (state !== 'end') {
-        this.dom.runner.children[1].textContent = state
-        this.dom.runner.setAttribute('state', state)
-      // }
+      this.dom.runnerStateName.textContent = state
+      this.dom.runnerStateIndicator.setAttribute('state', state)
     })
   }
 
   runnerStart (runner) {
     this.loadTom(runner.tom)
-    console.log('GO')
   }
 
   loadTom (tom) {
     for (const test of tom) {
-      const tomEl = dommo(`<tom><span>${test.name}</span> <span></span></tom>`)
-      tomEl.style.marginLeft = `${test.level()}em`
+      // const tomEl = dommo(`<test-el><test-name>${test.name}</test-name> <span></span></test-el>`)
+      const tomEl = dommo(`<test-el>
+        <state-indicator state="${test.state}"></state-indicator>
+        <test-name>${test.name}</test-name>
+      </test-el>`)
+      tomEl.style.transform = `translateX(${test.level()}em)`
       test.on('state', (state, test) => {
-        console.log(test)
-        tomEl.children[1].textContent = state
-        tomEl.setAttribute('state', state)
+        tomEl.children[0].setAttribute('state', state)
       })
       this.dom.tomContainer.appendChild(tomEl)
     }
