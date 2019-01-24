@@ -17,7 +17,7 @@
   "devDependencies": {
     "dommo": "^0.1.2",
     "sleep-anywhere": "^1.0.0",
-    "test-runner-core": "^0.6.0-5",
+    "test-runner-core": "^0.6.0-7",
     "test-object-model": "^0.2.5"
   }
 }

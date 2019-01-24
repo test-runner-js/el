@@ -32,7 +32,6 @@ class TestRunnerEl extends HTMLElement {
 
   loadTom (tom) {
     for (const test of tom) {
-      // const tomEl = dommo(`<test-el><test-name>${test.name}</test-name> <span></span></test-el>`)
       const tomEl = dommo(`<test-el>
         <state-indicator state="${test.state}"></state-indicator>
         <test-name>${test.name}</test-name>
