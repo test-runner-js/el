@@ -5,7 +5,7 @@ class TestRunnerEl extends HTMLElement {
   connectedCallback () {
     this.innerHTML = `<header>
       <runner-name>test-runner</runner-name>
-      <state-indicator state="in-progress"></state-indicator>
+      <state-indicator state=""></state-indicator>
       <runner-state>in-progress</runner-state>
       <span>duration: </span>
     </header>
@@ -17,17 +17,13 @@ class TestRunnerEl extends HTMLElement {
     }
   }
   setRunner (runner) {
-    runner.on('start', count => {
-      this.runnerStart(runner)
-    })
+    this.dom.runnerStateName.textContent = runner.state
+    this.dom.runnerStateIndicator.setAttribute('state', runner.state)
+    this.loadTom(runner.tom)
     runner.on('state', state => {
       this.dom.runnerStateName.textContent = state
       this.dom.runnerStateIndicator.setAttribute('state', state)
     })
-  }
-
-  runnerStart (runner) {
-    this.loadTom(runner.tom)
   }
 
   loadTom (tom) {
@@ -37,8 +33,10 @@ class TestRunnerEl extends HTMLElement {
         <test-name>${test.name}</test-name>
       </test-el>`)
       tomEl.style.transform = `translateX(${test.level()}em)`
-      test.on('state', (state, test) => {
+      test.on('state', function (state, prevState) {
+        if (this !== test) return
         tomEl.children[0].setAttribute('state', state)
+        tomEl.children[0].textContent = state
       })
       this.dom.tomContainer.appendChild(tomEl)
     }

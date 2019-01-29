@@ -36,6 +36,9 @@ state-indicator {
   margin-right: 0.5em;
 }
 
+[state="pending"] {
+  background-color: silver;
+}
 [state="in-progress"],
 [state="start"]
 {
