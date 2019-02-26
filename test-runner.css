@@ -23,15 +23,12 @@ test-el {
   margin-bottom: 0.5em;
   height: 1em;
 }
-/* test-el > :nth-child(1) { flex: 0 0 1em; } */
+test-el > :nth-child(1) { flex: 0 0 5em; } 
 test-el > :nth-child(2) { flex: 1 1 auto; }
 
-test-name {
-}
+test-name {}
 
 state-indicator {
-  flex: 0 0 1em;
-  display: block;
   height: 100%;
   margin-right: 0.5em;
 }
