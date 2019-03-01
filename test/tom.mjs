@@ -2,6 +2,7 @@ import Tom from '../node_modules/test-object-model/index.mjs'
 import sleep from '../node_modules/sleep-anywhere/index.mjs'
 
 const tom = new Tom('root')
+
 tom.test('fetch something 1', async function () {
   await sleep(2000)
   return true
