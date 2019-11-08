@@ -1,11 +1,20 @@
-/* updated to use tbody as parent div, so <tr>s can be added to it */
-function domify (html, doc) {
-  const div = (doc || document).createElement('tbody');
+/**
+ * @param {string} html
+ * @param {object} [options]
+ * @param {object} [options.document]
+ * @param {string} [options.parentEl]
+ */
+function domify (html, options) {
+  options = Object.assign({}, {
+    document: typeof document === 'undefined' ? undefined : document,
+    parentEl: 'container'
+  }, options);
+  const div = options.document.createElement(options.parentEl);
   div.innerHTML = html.trim();
   if (div.childNodes.length === 1) {
     return div.firstChild
   } else {
-    const frag = (doc || document).createDocumentFragment();
+    const frag = options.document.createDocumentFragment();
     Array.from(div.childNodes).forEach(function (childNode) {
       frag.appendChild(childNode);
     });

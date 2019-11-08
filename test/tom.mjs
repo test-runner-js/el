@@ -1,4 +1,4 @@
-import Tom from '../node_modules/test-object-model/index.mjs'
+import Tom from '../node_modules/test-object-model/dist/index.mjs'
 import sleep from '../node_modules/sleep-anywhere/index.mjs'
 
 const tom = new Tom('root')
