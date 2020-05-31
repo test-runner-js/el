@@ -28,17 +28,16 @@
     }
   }
 
-  const π = document.createElement.bind(document);
-
   class TestRunnerEl extends HTMLElement {
     connectedCallback () {
       this.innerHTML = `<header>
       <runner-name>test-runner</runner-name>
       <state-indicator state=""></state-indicator>
       <runner-state>in-progress</runner-state>
-      <span>duration: </span>
+      <duration>duration: </duration>
     </header>
     <tom-container></tom-container>`;
+      this.$ = this.querySelector.bind(this);
       this.dom = {
         tomContainer: this.querySelector('tom-container'),
         runnerStateName: this.querySelector('runner-state'),
@@ -52,6 +51,10 @@
       runner.on('state', state => {
         this.dom.runnerStateName.textContent = state;
         this.dom.runnerStateIndicator.setAttribute('state', state);
+      });
+      runner.tom.on('state', state => {
+        const seconds = ((Date.now() - runner.stats.start) / 1000).toFixed(2);
+        this.$('duration').textContent = `duration: ${seconds}s`;
       });
     }
 

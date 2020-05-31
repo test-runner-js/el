@@ -21,29 +21,34 @@ test-el {
   display: flex;
   flex-direction: row;
   margin-bottom: 0.5em;
-  height: 1em;
 }
-test-el > :nth-child(1) { flex: 0 0 5em; } 
+test-el > :nth-child(1) { flex: 0 0 8em; }
 test-el > :nth-child(2) { flex: 1 1 auto; }
 
-test-name {}
-
-state-indicator {
-  height: 100%;
-  margin-right: 0.5em;
+test-el test-name {
+  padding: 0.5em;
 }
 
+test-el state-indicator {
+  margin-right: 0.5em;
+  color: white;
+  padding: 0.5em;
+}
+
+[state="ignored"] {
+  background-color: grey;
+}
 [state="pending"] {
-  background-color: silver;
+  background-color: initial;
 }
 [state="in-progress"],
 [state="start"]
 {
-  background-color: lightblue;
+  background-color: orange;
 }
 [state="pass"] {
-  background-color: lightgreen;
+  background-color: green;
 }
 [state="fail"] {
-  background-color: lightsalmon;
+  background-color: red;
 }

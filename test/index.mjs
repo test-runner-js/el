@@ -1,11 +1,16 @@
-import '../index.mjs'
 import tom from './tom.mjs'
-import TestRunner from '../node_modules/test-runner-core/dist/index.mjs'
-const π = document.createElement.bind(document)
+import TestRunner from '/node_modules/test-runner-core/dist/index.mjs'
+import sleep from '/node_modules/sleep-anywhere/index.mjs'
+
 const $ = document.querySelector.bind(document)
 
-const runner = new TestRunner(tom)
-const testRunnerEl = π('test-runner')
-$('body').appendChild(testRunnerEl)
-testRunnerEl.setRunner(runner)
-setTimeout(() => runner.start(), 1000)
+async function start () {
+  const runner = new TestRunner(tom)
+  window.runner = runner
+  $('test-runner').setRunner(runner)
+  await sleep(1000)
+  await runner.start()
+}
+
+start().catch(console.error)
+

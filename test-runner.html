@@ -3,8 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Styleguide</title>
-    <link rel="stylesheet" href="test/index.css">
     <link rel="stylesheet" href="test-runner.css">
+    <style type="text/css">
+      html {
+        font-family: sans-serif;
+        font-size: 16px;
+      }
+    </style>
   </head>
   <body>
     <test-runner>
@@ -12,11 +17,11 @@
         <runner-name>test-runner</runner-name>
         <state-indicator state="in-progress"></state-indicator>
         <runner-state>in-progress</runner-state>
-        <span>duration: </span>
+        <duration>duration: </duration>
       </header>
       <tom-container>
         <test-el>
-          <state-indicator></state-indicator>
+          <state-indicator state="ignored"></state-indicator>
           <test-name>Main tests</test-name>
         </test-el>
         <test-el style="transform: translateX(1em)">

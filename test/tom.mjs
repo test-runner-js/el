@@ -1,5 +1,5 @@
-import Tom from '../node_modules/test-object-model/dist/index.mjs'
-import sleep from '../node_modules/sleep-anywhere/index.mjs'
+import Tom from '/node_modules/test-object-model/dist/index.mjs'
+import sleep from '/node_modules/sleep-anywhere/index.mjs'
 
 const tom = new Tom('root')
 
@@ -12,7 +12,7 @@ tom.test('fetch something 2', async function () {
   return true
 })
 const three = tom.test('fetch something 3', async function () {
-  await sleep(4000)
+  await sleep(4400)
   return true
 })
 three.test('fetch something 4', async function () {
@@ -20,11 +20,11 @@ three.test('fetch something 4', async function () {
   return true
 })
 three.test('fetch something 5', async function () {
-  await sleep(1000)
+  await sleep(1700)
   return true
 })
 three.test('fetch something 6', async function () {
-  await sleep(3000)
+  await sleep(3100)
   throw new Error('broken')
 })
 
