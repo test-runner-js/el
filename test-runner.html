@@ -27,14 +27,26 @@
         <test-el style="transform: translateX(1em)">
           <state-indicator state="pass"></state-indicator>
           <test-name>Should do that thing we expect</test-name>
+          <details data-has-data="true">
+            <summary>Data</summary>
+            <pre><code>Some data to display here</code></pre>
+          </details>
         </test-el>
         <test-el style="transform: translateX(1em)">
           <state-indicator state="fail"></state-indicator>
           <test-name>Should fail as expected</test-name>
+          <details>
+            <summary>Data</summary>
+            <pre><code></code></pre>
+          </details>
         </test-el>
         <test-el style="transform: translateX(1em)">
           <state-indicator state="in-progress"></state-indicator>
           <test-name>Another thing in-progress</test-name>
+          <details>
+            <summary>Data</summary>
+            <pre><code></code></pre>
+          </details>
         </test-el>
       </tom-container>
     </test-runner>

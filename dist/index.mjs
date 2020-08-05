@@ -38,6 +38,7 @@ class TestRunnerEl extends HTMLElement {
       runnerStateIndicator: this.querySelector('state-indicator')
     };
   }
+
   setRunner (runner) {
     this.dom.runnerStateName.textContent = runner.state;
     this.dom.runnerStateIndicator.setAttribute('state', runner.state);
@@ -57,12 +58,22 @@ class TestRunnerEl extends HTMLElement {
       const tomEl = domify(`<test-el>
         <state-indicator state="${test.state}"></state-indicator>
         <test-name>${test.name}</test-name>
+        <details>
+          <summary>Data</summary>
+          <pre><code></code></pre>
+        </details>
       </test-el>`);
-      tomEl.style.transform = `translateX(${test.level()}em)`;
+      tomEl.style.paddingLeft = `${test.level()}em`;
       test.on('state', function (state, prevState) {
         if (this !== test) return
         tomEl.children[0].setAttribute('state', state);
         tomEl.children[0].textContent = state;
+        if (this.context && this.context.data) {
+          tomEl.querySelector('code').textContent = JSON.stringify(this.context.data, null, '  ');
+          tomEl.children[2].dataset.hasData = true;
+        } else {
+          delete tomEl.children[2].dataset.hasData;
+        }
       });
       this.dom.tomContainer.appendChild(tomEl);
     }
