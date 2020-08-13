@@ -1,7 +1,7 @@
 {
   "name": "@test-runner/el",
   "author": "Lloyd Brookes <75pound@gmail.com>",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "test-runner-el",
   "repository": "https://github.com/test-runner-js/el",
   "keywords": [],
