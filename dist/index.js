@@ -88,6 +88,7 @@ actual: ${err.actual}
 expected: ${err.expected}
 stack: ${err.stack}`;
           tomEl.children[2].dataset.hasData = true;
+          tomEl.querySelector('details').open = true;
         });
         this.dom.tomContainer.appendChild(tomEl);
       }
