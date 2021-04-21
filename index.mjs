@@ -53,6 +53,14 @@ class TestRunnerEl extends HTMLElement {
           delete tomEl.children[2].dataset.hasData
         }
       })
+
+      test.on('fail', (test, err) => {
+        tomEl.querySelector('code').textContent = `message: ${err.message}
+actual: ${err.actual}
+expected: ${err.expected}
+stack: ${err.stack}`
+        tomEl.children[2].dataset.hasData = true
+      })
       this.dom.tomContainer.appendChild(tomEl)
     }
   }
